@@ -1,13 +1,13 @@
 library(shiny)
 library(magrittr)
 
+source("rips_complex.R")
+
 X <- read.csv("sample_data.csv")
 X.dist <- dist(X)
 X.stat <- summary(X.dist)[c(1,4,6)]
 X.stat <- round(X.stat, digits = mean(X.stat) %>% log10 %>% ceiling %>% subtract + 2) %>% as.list
 X.filt <- calcVRFilt(X, maxscale = max(X.dist), maxdimension = 2)
-
-source("rips_complex.R")
 
 ui <- fluidPage(
   titlePanel("Rips Complex Viewer"),
@@ -26,8 +26,8 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   output$main <- renderPlot({
-    plot.filtration(X, K = filt, t = input$scale)
-    if (input$show.circle) showRadius(X, K = filt, t = input$scale)
+    plot.filtration(X, K = X.filt, t = input$scale)
+    if (input$show.circle) showRadius(X, K = X.filt, t = input$scale)
   })
 }
 
