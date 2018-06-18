@@ -37,7 +37,7 @@ calcVRFilt <- function(X,maxscale,maxdimension,dst=NULL){
 }
 
 plot.filtration <- function(X=X,K=filtration,t=max(K[,"deg"]),maxdim=max(K[,"dim"])+1,...){
-  plot(X,ann=F,type = "n",...)
+  plot(X,ann=F,type = "n", asp = 1,...)
   v <- lapply(which(K[,"deg"]<=t),calcVertex,attr(K,"boundary"))
   overdim <- F
   for(s in v){
@@ -59,6 +59,11 @@ plot.filtration <- function(X=X,K=filtration,t=max(K[,"deg"]),maxdim=max(K[,"dim
   }
   if(overdim) 
     warning(paste("drawing dimension of simplex is restricted",min(maxdim,2)),call. = F)
+}
+
+showRadius <- function(X, K, t = max(K[,"deg"]), lty = 3){
+  require(plotrix)
+  . <- apply(X, 1, function(x, t, lty) draw.circle(x[1], x[2], t, lty = lty, border = 2), t/2, lty)
 }
 
 calcVertex <- function(i,b){
