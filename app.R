@@ -1,12 +1,20 @@
 library(shiny)
+library(magrittr)
 
 X <- read.csv("sample_data.csv")
-source(rips_complex.R)
+X.dist <- dist(X)
+X.stat <- summary(X.dist)[c(1,4,6)]
+X.stat <- round(X.stat, digits = mean(X.stat) %>% log10 %>% ceiling %>% subtract + 2) %>% as.list
+
+source("rips_complex.R")
 
 ui <- fluidPage(
   titlePanel("App Title"),
   sidebarLayout(
-    sidebarPanel(),
+    sidebarPanel(
+      sliderInput(inputId = "scale", label = "radius",
+                  min = X.stat$Min., max = X.stat$Max., value = X.stat$Mean)
+    ),
     mainPanel(
       plotOutput("main")
     )
