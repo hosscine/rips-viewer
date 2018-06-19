@@ -1,5 +1,5 @@
-# rips-viewer
-====
+rips-viewer
+===========
 
 Shiny app for the visualization of Vietoris-Rips complex.
 
