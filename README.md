@@ -9,13 +9,13 @@ Shiny app for the visualization of Vietoris-Rips complex.
 
 ## Usage
 
-Jump to deployed [addres](https://hosscine.shinyapps.io/rips_complex/) in shinyapps.io.
+Jump to deployed [url](https://hosscine.shinyapps.io/rips_complex/) in shinyapps.io.
 
 ## Install
 
-1. Cloning this repository to your local.
-2. Installing required r package `install.package(c("shiny", "magrittr"))`
-3. Starting app in cloned directory `shiny::runApp()`
+1. Clone this repository to your local.
+2. Install required r package `install.package(c("shiny", "magrittr"))`
+3. Start app in cloned directory `shiny::runApp()`
 
 ## Licence
 
